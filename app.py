@@ -1,3 +1,4 @@
+import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import random
@@ -39,9 +40,16 @@ def run_algorithm(bar_rects, states, interval):
     ani = animation.FuncAnimation(fig, update, frames=len(states),
                               init_func=init, blit=True, interval=interval, repeat=False)
     plt.show()
-bubble_sort(data.copy(), states)
-run_algorithm(bar_rects, states, 1)
-states = []
 
-quick_sort(data.copy(), 0, len(data) - 1, states)
-run_algorithm(bar_rects, states, 100)
+if __name__ == "__main__":
+    if len(sys.argv) != 2: exit()
+    algorithm = int(sys.argv[1])
+    print(algorithm)
+    if algorithm == 0:
+        bubble_sort(data.copy(), states)
+        run_algorithm(bar_rects, states, 1)
+    elif algorithm == 1:
+        quick_sort(data.copy(), 0, len(data) - 1, states)
+        run_algorithm(bar_rects, states, 100)
+    else:
+        exit()
